@@ -1,31 +1,29 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 interface IProps {
-  title: string;
-  icon: string;
+  title?: string;
+  icon?: string;
 }
 
-class NavigationBar extends Component<IProps> {
-  static defaultProps: IProps = {
-    title: "Github Finder",
-    icon: "fab fa-github",
-  };
+const NavigationBar: React.FC<IProps> = ({ title, icon }) => {
+  return (
+    <nav className="navbar bg-primary">
+      <h1>
+        <i className={icon} /> {title}
+      </h1>
+    </nav>
+  );
+};
 
-  static propTypes = {
-    title: PropTypes.string.isRequired,
-    icon: PropTypes.string.isRequired,
-  };
+NavigationBar.defaultProps = {
+  title: "Github Finder",
+  icon: "fab fa-github",
+};
 
-  render() {
-    return (
-      <nav className="navbar bg-primary">
-        <h1>
-          <i className={this.props.icon} /> {this.props.title}
-        </h1>
-      </nav>
-    );
-  }
-}
+NavigationBar.propTypes = {
+  title: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
+};
 
 export default NavigationBar;
