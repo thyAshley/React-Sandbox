@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import "./App.css";
+import NavigationBar from "./components/Layout/NavigationBar";
 
 class App extends Component {
   render() {
-    const name: string = "John Doe";
     return (
       <div className="App">
-        <h1>Hello {name}</h1>
+        <NavigationBar />
       </div>
     );
   }
