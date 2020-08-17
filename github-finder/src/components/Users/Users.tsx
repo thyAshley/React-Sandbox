@@ -1,5 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
+
 import UserItem from "./UserItem";
+import Spinner from "../Layout/Spinner";
 
 const userStyle = {
   display: "grid",
@@ -7,7 +9,7 @@ const userStyle = {
   gridGap: "1rem",
 };
 
-type ObjClass = {
+type User = {
   id: number;
   login: string;
   avatar_url: string;
@@ -15,25 +17,25 @@ type ObjClass = {
 };
 
 interface IProps {
-  users: ObjClass[];
+  users: User[];
   loading: boolean;
 }
 
-export class Users extends Component<IProps> {
-  render() {
-    return (
-      <div style={userStyle}>
-        {this.props.users.map((user) => (
-          <UserItem
-            key={user.id}
-            login={user.login}
-            avatar_url={user.avatar_url}
-            html_url={user.html_url}
-          />
-        ))}
-      </div>
-    );
-  }
-}
+const Users = ({ users, loading }: IProps) => {
+  return loading ? (
+    <Spinner />
+  ) : (
+    <div style={userStyle}>
+      {users.map((user) => (
+        <UserItem
+          key={user.id}
+          login={user.login}
+          avatar_url={user.avatar_url}
+          html_url={user.html_url}
+        />
+      ))}
+    </div>
+  );
+};
 
 export default Users;
