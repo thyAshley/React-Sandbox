@@ -1,6 +1,13 @@
-import React, { Component } from "react";
+import React, { Component, FormEvent } from "react";
 
-export class Search extends Component {
+interface IProps {
+  searchUsers: Function;
+  clearUsers: React.MouseEventHandler;
+  showClear: boolean;
+  setAlert: Function;
+}
+
+export class Search extends Component<IProps> {
   state = {
     text: "",
   };
@@ -11,10 +18,16 @@ export class Search extends Component {
 
   onSubmitHandler = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(this.state.text);
+    if (this.state.text === "") {
+      this.props.setAlert("Please enter something", "light");
+    } else {
+      this.props.searchUsers(this.state.text);
+      this.setState({ text: "" });
+    }
   };
 
   render() {
+    const { showClear, clearUsers } = this.props;
     return (
       <div>
         <form className="form" onSubmit={this.onSubmitHandler}>
@@ -31,6 +44,11 @@ export class Search extends Component {
             className="btn btn-dark btn-block"
           />
         </form>
+        {showClear && (
+          <button className="btn btn-light btn-block" onClick={clearUsers}>
+            Clear
+          </button>
+        )}
       </div>
     );
   }
