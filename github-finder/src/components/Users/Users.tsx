@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import UserItem from "./UserItem";
 import Spinner from "../Layout/Spinner";
@@ -21,7 +22,7 @@ interface IProps {
   loading: boolean;
 }
 
-const Users = ({ users, loading }: IProps) => {
+const Users: React.FC<IProps> = ({ users, loading }) => {
   return loading ? (
     <Spinner />
   ) : (
@@ -36,6 +37,11 @@ const Users = ({ users, loading }: IProps) => {
       ))}
     </div>
   );
+};
+
+Users.propTypes = {
+  users: PropTypes.array.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 export default Users;
