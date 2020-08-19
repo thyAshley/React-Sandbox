@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 import Spinner from "../Layout/Spinner";
+import Repos from "../repos/Repos";
 
 interface MatchParams {
   username: string;
@@ -11,6 +12,8 @@ interface MatchParams {
 
 interface IProps extends RouteComponentProps<MatchParams> {
   getUser: Function;
+  getUserRepos: Function;
+  repos: null | [];
   user: {
     login: string;
     name: string;
@@ -32,16 +35,19 @@ interface IProps extends RouteComponentProps<MatchParams> {
 export class User extends Component<IProps> {
   static propTypes = {
     loading: PropTypes.bool.isRequired,
-    user: PropTypes.object.isRequired,
+    user: PropTypes.object,
     getUser: PropTypes.func.isRequired,
+    getUserRepos: PropTypes.func.isRequired,
+    repos: PropTypes.array,
   };
 
   componentDidMount() {
     const { username } = this.props.match.params;
     this.props.getUser(username);
+    this.props.getUserRepos(username);
   }
   render() {
-    const { user, loading } = this.props;
+    const { user, loading, repos } = this.props;
     if (loading) return <Spinner />;
     return (
       user && (
@@ -109,13 +115,15 @@ export class User extends Component<IProps> {
             <div className="badge badge-success">
               Following: {user.following}
             </div>
-            <div className="badge badge-danger">
+            <div className="badge badge-light">
               Public Repos: {user.public_repos}
             </div>
             <div className="badge badge-dark">
               Public Gists: {user.public_gists}
             </div>
           </div>
+          {console.log("-- ", repos)}
+          {repos && <Repos repos={repos} />}
         </Fragment>
       )
     );

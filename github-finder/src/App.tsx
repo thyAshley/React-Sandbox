@@ -17,6 +17,7 @@ class App extends Component {
     user: null,
     loading: false,
     alert: null,
+    repos: null,
   };
 
   static defaultProps = {
@@ -45,8 +46,15 @@ class App extends Component {
     const res = await axios.get(
       `https://api.github.com/users/${username}?client_id=${process.env.REACT_APP_CLIENT_ID}&client_secret=${process.env.REACT_APP_CLIENT_SECRET}`
     );
-    console.log(res);
     this.setState({ user: res.data, loading: false });
+  };
+
+  getUserRepos = async (username: string) => {
+    this.setState({ loading: true });
+    const res = await axios.get(
+      `https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${process.env.REACT_APP_CLIENT_ID}&client_secret=${process.env.REACT_APP_CLIENT_SECRET}`
+    );
+    this.setState({ repos: res.data, loading: false });
   };
 
   clearUsers = () => {
@@ -67,7 +75,7 @@ class App extends Component {
   };
 
   render() {
-    const { users, loading, alert, user } = this.state;
+    const { users, loading, alert, user, repos } = this.state;
     return (
       <div className="App">
         <NavigationBar />
@@ -99,6 +107,8 @@ class App extends Component {
                   getUser={this.searchUserByName}
                   user={user}
                   loading={loading}
+                  getUserRepos={this.getUserRepos}
+                  repos={repos}
                 />
               )}
             />
