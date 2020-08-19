@@ -9,10 +9,12 @@ import Users from "./components/Users/Users";
 import Search from "./components/Users/Search";
 import Alert from "./components/Layout/Alert";
 import About from "./components/pages/About";
+import User from "./components/Users/User";
 
 class App extends Component {
   state = {
     users: [],
+    user: null,
     loading: false,
     alert: null,
   };
@@ -38,6 +40,15 @@ class App extends Component {
     this.setState({ users: res.data.items, loading: false });
   };
 
+  searchUserByName = async (username: string) => {
+    this.setState({ loading: true });
+    const res = await axios.get(
+      `https://api.github.com/users/${username}?client_id=${process.env.REACT_APP_CLIENT_ID}&client_secret=${process.env.REACT_APP_CLIENT_SECRET}`
+    );
+    console.log(res);
+    this.setState({ user: res.data, loading: false });
+  };
+
   clearUsers = () => {
     this.setState({ users: [], loading: false });
   };
@@ -56,7 +67,7 @@ class App extends Component {
   };
 
   render() {
-    const { users, loading, alert } = this.state;
+    const { users, loading, alert, user } = this.state;
     return (
       <div className="App">
         <NavigationBar />
@@ -79,6 +90,18 @@ class App extends Component {
               )}
             />
             <Route exact path="/about" component={About} />
+            <Route
+              exact
+              path="/user/:username"
+              render={(props) => (
+                <User
+                  {...props}
+                  getUser={this.searchUserByName}
+                  user={user}
+                  loading={loading}
+                />
+              )}
+            />
           </Switch>
         </div>
       </div>
