@@ -1,4 +1,4 @@
-import React, { Component, FormEvent } from "react";
+import React, { FormEvent, useState } from "react";
 
 interface IProps {
   searchUsers: Function;
@@ -7,51 +7,51 @@ interface IProps {
   setAlert: Function;
 }
 
-export class Search extends Component<IProps> {
-  state = {
-    text: "",
+const Search: React.FC<IProps> = ({
+  showClear,
+  clearUsers,
+  setAlert,
+  searchUsers,
+}) => {
+  const [text, setText] = useState("");
+
+  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setText(e.target.value);
   };
 
-  onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
-
-  onSubmitHandler = (e: React.FormEvent) => {
+  const onSubmitHandler = (e: React.FormEvent) => {
     e.preventDefault();
-    if (this.state.text === "") {
-      this.props.setAlert("Please enter something", "light");
+    if (text === "") {
+      setAlert("Please enter something", "light");
     } else {
-      this.props.searchUsers(this.state.text);
-      this.setState({ text: "" });
+      searchUsers(text);
+      setText("");
     }
   };
 
-  render() {
-    const { showClear, clearUsers } = this.props;
-    return (
-      <div>
-        <form className="form" onSubmit={this.onSubmitHandler}>
-          <input
-            type="text"
-            name="text"
-            value={this.state.text}
-            onChange={this.onChangeHandler}
-            placeholder="Search Users"
-          />
-          <input
-            type="submit"
-            value="Search"
-            className="btn btn-dark btn-block"
-          />
-        </form>
-        {showClear && (
-          <button className="btn btn-light btn-block" onClick={clearUsers}>
-            Clear
-          </button>
-        )}
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <form className="form" onSubmit={onSubmitHandler}>
+        <input
+          type="text"
+          name="text"
+          value={text}
+          onChange={onChangeHandler}
+          placeholder="Search Users"
+        />
+        <input
+          type="submit"
+          value="Search"
+          className="btn btn-dark btn-block"
+        />
+      </form>
+      {showClear && (
+        <button className="btn btn-light btn-block" onClick={clearUsers}>
+          Clear
+        </button>
+      )}
+    </div>
+  );
+};
 
 export default Search;
