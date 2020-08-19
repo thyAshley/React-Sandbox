@@ -1,6 +1,7 @@
-import React, { useEffect, Fragment } from "react";
+import React, { useEffect, Fragment, useContext } from "react";
 import { RouteComponentProps } from "react-router";
 import { Link } from "react-router-dom";
+import GithubContext from "../../context/github/githubContext";
 
 import Spinner from "../Layout/Spinner";
 import Repos from "../repos/Repos";
@@ -31,14 +32,10 @@ interface IProps extends RouteComponentProps<MatchParams> {
   loading: boolean;
 }
 
-const User: React.FC<IProps> = ({
-  match,
-  repos,
-  getUserRepos,
-  getUser,
-  user,
-  loading,
-}) => {
+const User: React.FC<IProps> = ({ match }) => {
+  const githubContext = useContext(GithubContext);
+  const { loading, user, repos } = githubContext;
+
   const { username } = match.params;
   useEffect(() => {
     getUser(username);
