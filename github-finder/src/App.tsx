@@ -63,7 +63,7 @@ class App extends Component {
 
     setTimeout(() => {
       this.setState({ alert: null });
-    }, 5000);
+    }, 3000);
   };
 
   render() {
