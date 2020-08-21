@@ -31,11 +31,11 @@ const reducer = (state: IState, action: IAction): IState => {
   }
 };
 
-export const StoreProvider = (props: any): JSX.Element => {
+export const StoreProvider = ({
+  children,
+}: JSX.ElementChildrenAttribute): JSX.Element => {
   const [state, dispatch] = useReducer(reducer, initialState);
   return (
-    <Store.Provider value={{ state, dispatch }}>
-      {props.children}
-    </Store.Provider>
+    <Store.Provider value={{ state, dispatch }}>{children}</Store.Provider>
   );
 };

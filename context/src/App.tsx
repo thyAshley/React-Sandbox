@@ -1,4 +1,4 @@
-import React, { Fragment, Suspense, useContext } from "react";
+import React, { Fragment, useContext } from "react";
 import { Link, Switch, Route } from "react-router-dom";
 import FavPage from "./FavPage";
 

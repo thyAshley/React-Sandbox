@@ -1,5 +1,5 @@
-import { IState, IEpisode, IAction } from "./interface";
-export const fetchDataAction = async (dispatch: any) => {
+import { IState, IEpisode, IAction, Dispatch } from "./interface";
+export const fetchDataAction = async (dispatch: Dispatch) => {
   const URL =
     "https://api.tvmaze.com/singlesearch/shows?q=rick-&-morty&embed=episodes";
   const data = await fetch(URL);
@@ -13,6 +13,7 @@ export const toggleFavAction = (
   episode: IEpisode
 ): IAction => {
   const episodeInFav = state.favourites.includes(episode);
+
   let dispatchObj = {
     type: "ADD_FAV",
     payload: episode,
