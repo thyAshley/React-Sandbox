@@ -1,14 +1,6 @@
 import React, { createContext, useReducer } from "react";
+import { IState, IAction } from "./interface";
 
-interface IState {
-  episodes: [];
-  favourites: [];
-}
-
-interface IAction {
-  type: string;
-  payload: any;
-}
 const initialState: IState = {
   episodes: [],
   favourites: [],
@@ -22,6 +14,17 @@ const reducer = (state: IState, action: IAction): IState => {
       return {
         ...state,
         episodes: action.payload,
+      };
+    case "ADD_FAV":
+      return {
+        ...state,
+        favourites: [...state.favourites, action.payload],
+      };
+    case "REMOVE_FAV":
+      let result = state.favourites.filter((ep) => ep !== action.payload);
+      return {
+        ...state,
+        favourites: result,
       };
     default:
       return state;
