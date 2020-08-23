@@ -1,44 +1,20 @@
-import React, { useReducer, useRef } from "react";
+import React, { useReducer, useRef, useContext } from "react";
+
+import { GlobalContext } from "./GlobalState";
 import useClickOutside from "./useClickOutside";
-type IAction = { type: "one" } | { type: "two" } | { type: "three" };
-
-type IState = {
-  rValue: boolean;
-};
-
-const initialState: IState = {
-  rValue: true,
-};
-
-const reducer = (state: IState, action: IAction) => {
-  switch (action.type) {
-    case "one":
-      return {
-        ...state,
-        rValue: true,
-      };
-    case "two":
-      return {
-        ...state,
-        rValue: false,
-      };
-    default:
-      return state;
-  }
-};
 
 const ReducerButton = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
   const ref = useRef<HTMLDivElement>(null!);
+  const { rValue, turnOn, turnOff } = useContext(GlobalContext);
+
   useClickOutside(ref, () => {
     console.log("clicked outside");
   });
   return (
     <div ref={ref}>
-      {state?.rValue && <h1>Visible</h1>}
-      <button onClick={() => dispatch({ type: "one" })}>Action One</button>
-      <button onClick={() => dispatch({ type: "two" })}>Action Two</button>
-      <button onClick={() => dispatch({ type: "three" })}>Action Three</button>
+      {rValue && <h1>Visible</h1>}
+      <button onClick={turnOn}>Action One</button>
+      <button onClick={turnOff}>Action Two</button>
     </div>
   );
 };
