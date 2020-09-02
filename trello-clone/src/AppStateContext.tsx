@@ -1,4 +1,4 @@
-import React, { createContext } from "react";
+import React, { createContext, useContext } from "react";
 
 interface Task {
   id: string;
@@ -16,6 +16,19 @@ export interface AppState {
 interface AppStateContextProps {
   state: AppState;
 }
+
+type Action =
+  | {
+      type: "ADD_LIST";
+      payload: string;
+    }
+  | {
+      type: "ADD_TASK";
+      payload: {
+        text: string;
+        listId: string;
+      };
+    };
 
 export const appData: AppState = {
   lists: [
@@ -40,6 +53,10 @@ export const appData: AppState = {
 const AppStateContext = createContext<AppStateContextProps>(
   {} as AppStateContextProps
 );
+
+export const useAppState = () => {
+  return useContext(AppStateContext);
+};
 
 export const AppStateProvider = ({ children }: React.PropsWithChildren<{}>) => {
   return (
