@@ -1,13 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-const Header = ({ username }) => {
-  return <h1>Hello {username}</h1>;
+const App = () => {
+  const people = ["john", "dave", "jane"];
+  return people.map((person) => <p>{person}</p>);
 };
 
-ReactDOM.render(
-  <div>
-    <Header username={"John"} />
-  </div>,
-  document.getElementById("root")
-);
+ReactDOM.render(<App />, document.getElementById("root"));
