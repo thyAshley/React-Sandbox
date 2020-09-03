@@ -1,20 +1,23 @@
-import React, { createContext, useContext } from "react";
+import React, { createContext, useContext, useReducer } from "react";
 
 interface Task {
   id: string;
   text: string;
 }
+
 interface List {
   id: string;
   text: string;
   tasks: Task[];
 }
+
 export interface AppState {
   lists: List[];
 }
 
 interface AppStateContextProps {
   state: AppState;
+  dispatch: React.Dispatch<Action>;
 }
 
 type Action =
@@ -30,6 +33,23 @@ type Action =
       };
     };
 
+const appStateReducer = (state: AppState, action: Action): AppState => {
+  switch (action.type) {
+    case "ADD_LIST": {
+      return {
+        ...state,
+      };
+    }
+    case "ADD_TASK": {
+      return {
+        ...state,
+      };
+    }
+    default: {
+      return state;
+    }
+  }
+};
 export const appData: AppState = {
   lists: [
     {
@@ -59,8 +79,9 @@ export const useAppState = () => {
 };
 
 export const AppStateProvider = ({ children }: React.PropsWithChildren<{}>) => {
+  const [state, dispatch] = useReducer(appStateReducer, appData);
   return (
-    <AppStateContext.Provider value={{ state: appData }}>
+    <AppStateContext.Provider value={{ state, dispatch }}>
       {children}
     </AppStateContext.Provider>
   );
