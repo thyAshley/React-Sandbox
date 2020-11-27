@@ -17,3 +17,8 @@ export interface IPlayerProps {
   isPlaying: boolean;
   setIsPlaying: (isPlaying: boolean) => void;
 }
+
+export interface ISongInfoProps {
+  currentTime: number | null;
+  duration: number | null;
+}
