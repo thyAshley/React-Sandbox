@@ -19,6 +19,7 @@ export interface ILibraryProps {
   setCurrentSong: (song: ISong) => void;
   audioRef: MutableRefObject<HTMLAudioElement | null>;
   isPlaying: boolean;
+  showLibrary: boolean;
 }
 
 export interface ILibrarySongProps {
@@ -40,4 +41,9 @@ export interface IPlayerProps {
 export interface ISongInfoProps {
   currentTime: number;
   duration: number;
+}
+
+export interface INav {
+  showLibrary: boolean;
+  setShowLibrary: (show: boolean) => void;
 }

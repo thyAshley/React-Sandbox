@@ -6,8 +6,10 @@ import Song from "./components/Song";
 import data from "./utils/data";
 import { ISong, ISongInfoProps } from "./types";
 import Library from "./components/Library";
+import Nav from "./components/Nav";
 
 function App() {
+  const [showLibrary, setShowLibrary] = useState(false);
   const [songs, setSongs] = useState<ISong[]>(data());
   const [currentSong, setCurrentSong] = useState<ISong>(songs[0]);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -32,6 +34,7 @@ function App() {
   };
   return (
     <div className="App">
+      <Nav setShowLibrary={setShowLibrary} showLibrary={showLibrary} />
       <Song currentSong={currentSong} />
       <Player
         audioRef={audioRef}
@@ -41,7 +44,7 @@ function App() {
         songInfo={songInfo}
         setSongInfo={setSongInfo}
       />
-      <Library songs={songs} setCurrentSong={setCurrentSong} audioRef={audioRef} isPlaying={isPlaying} />
+      <Library showLibrary={showLibrary} songs={songs} setCurrentSong={setCurrentSong} audioRef={audioRef} isPlaying={isPlaying} />
 
       <audio
         onLoadedMetadata={updateDuration}
