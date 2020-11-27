@@ -1,11 +1,12 @@
 import React from 'react'
+import { ISongProps } from '../types/types'
 
-const Song = () => {
+const Song = ({ currentSong }: ISongProps) => {
   return (
     <div className="song-container">
-      <h1>Title</h1>
-      <h1>Song</h1>
-      <h1>Artist</h1>
+      <h1>{currentSong.cover}</h1>
+      <h1>{currentSong.name}</h1>
+      <h1>{currentSong.artist}</h1>
     </div>
   )
 }

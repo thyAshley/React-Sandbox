@@ -1,5 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
-function chillHop() {
+import { ISong } from "../types/types";
+
+function chillHop(): ISong[] {
   return [
     {
       name: "Beaver Creek",
