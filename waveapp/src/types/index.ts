@@ -11,3 +11,9 @@ export interface ISong {
 export interface ISongProps {
   currentSong: ISong;
 }
+
+export interface IPlayerProps {
+  currentSong: ISong;
+  isPlaying: boolean;
+  setIsPlaying: (isPlaying: boolean) => void;
+}

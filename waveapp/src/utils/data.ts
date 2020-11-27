@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { ISong } from "../types/types";
+import { ISong } from "../types";
 
 function chillHop(): ISong[] {
   return [

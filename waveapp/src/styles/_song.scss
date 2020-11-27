@@ -4,4 +4,18 @@
   flex-direction: column;
   justify-content: center;
   min-height: 60vh;
+
+  img {
+    border-radius: 50%;
+    min-width: 250px;
+    width: 20%;
+  }
+
+  h2 {
+    padding: 3rem 1rem 1rem 1rem;
+  }
+
+  h3 {
+    font-size: 1rem;
+  }
 }
