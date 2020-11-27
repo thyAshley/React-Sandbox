@@ -1,12 +1,12 @@
 import React, { SyntheticEvent, useRef, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlay, faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import { faPlay, faPause, faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 
 import { IPlayerProps, ISongInfoProps } from '../types'
 
 const Player = ({ currentSong, isPlaying, setIsPlaying }: IPlayerProps) => {
   const [songInfo, setSongInfo] = useState<ISongInfoProps>({
-    currentTime: null,
+    currentTime: 0,
     duration: 0,
   })
 
@@ -51,12 +51,14 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }: IPlayerProps) => {
     <div className="player">
       <div className="time-control">
         <p>{getTime(songInfo.currentTime)}</p>
-        <input min={0} max={songInfo.duration || 1} value={songInfo.currentTime || 0} type="range" onChange={dragHandler} />
+        <input min={0} max={songInfo.duration} value={songInfo.currentTime || 0} type="range" onChange={dragHandler} />
         <p>{getTime(songInfo.duration)}</p>
       </div>
       <div className="play-control">
         <FontAwesomeIcon className="skip-back" size="2x" icon={faAngleLeft} />
-        <FontAwesomeIcon className="play" size="2x" icon={faPlay} onClick={playSongHandler} />
+        <FontAwesomeIcon className="play" size="2x"
+          icon={isPlaying ? faPause : faPlay}
+          onClick={playSongHandler} />
         <FontAwesomeIcon className="skip-forward" size="2x" icon={faAngleRight} />
       </div>
       <audio onLoadedMetadata={updateDuration} onTimeUpdate={updateTimeHandler} src={currentSong.audio} ref={audioRef} />

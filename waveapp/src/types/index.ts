@@ -12,6 +12,14 @@ export interface ISongProps {
   currentSong: ISong;
 }
 
+export interface ILibraryProps {
+  songs: ISong[];
+}
+
+export interface ILibrarySongProps {
+  song: ISong;
+}
+
 export interface IPlayerProps {
   currentSong: ISong;
   isPlaying: boolean;
@@ -19,6 +27,6 @@ export interface IPlayerProps {
 }
 
 export interface ISongInfoProps {
-  currentTime: number | null;
-  duration: number | null;
+  currentTime: number;
+  duration: number;
 }
