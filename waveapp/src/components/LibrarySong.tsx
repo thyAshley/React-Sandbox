@@ -1,18 +1,11 @@
 import React from "react";
+
 import { ILibrarySongProps } from "../types";
 
 const LibrarySong = ({ song, setCurrentSong, audioRef, isPlaying }: ILibrarySongProps) => {
-  const songSelectHandler = () => {
-    song.active = true;
-    setCurrentSong(song);
-    if (isPlaying) {
-      const playPromise = audioRef.current?.play();
-      if (playPromise !== undefined) {
-        playPromise.then((audio) => {
-          audioRef.current?.play();
-        })
-      }
-    }
+  const songSelectHandler = async () => {
+    await setCurrentSong(song);
+    if (isPlaying) audioRef.current?.play()
   }
 
   return (

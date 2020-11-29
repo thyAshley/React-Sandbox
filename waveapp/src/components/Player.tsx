@@ -45,13 +45,14 @@ const Player = ({ setSongs, setCurrentSong, songs, songInfo, setSongInfo, audioR
     })
   }
 
-  const skipTrackHandler = (direction: string) => {
+  const skipTrackHandler = async (direction: string) => {
     let currentIndex = songs.findIndex(song => song.id === currentSong.id)
     if (direction === 'next') {
-      currentIndex === songs.length - 1 ? setCurrentSong(songs[0]) : setCurrentSong(songs[currentIndex + 1])
+      await currentIndex === songs.length - 1 ? setCurrentSong(songs[0]) : setCurrentSong(songs[currentIndex + 1])
     } else {
-      currentIndex === 0 ? setCurrentSong(songs[songs.length - 1]) : setCurrentSong(songs[currentIndex - 1])
+      await currentIndex === 0 ? setCurrentSong(songs[songs.length - 1]) : setCurrentSong(songs[currentIndex - 1])
     }
+    if (isPlaying) audioRef.current!.play();
   }
 
   return (
