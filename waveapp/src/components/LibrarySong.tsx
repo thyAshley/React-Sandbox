@@ -3,6 +3,7 @@ import { ILibrarySongProps } from "../types";
 
 const LibrarySong = ({ song, setCurrentSong, audioRef, isPlaying }: ILibrarySongProps) => {
   const songSelectHandler = () => {
+    song.active = true;
     setCurrentSong(song);
     if (isPlaying) {
       const playPromise = audioRef.current?.play();
@@ -15,9 +16,9 @@ const LibrarySong = ({ song, setCurrentSong, audioRef, isPlaying }: ILibrarySong
   }
 
   return (
-    <div className="library-song" onClick={songSelectHandler}>
+    <div className={`library-song ${song.active ? 'active' : ''}`} onClick={songSelectHandler}>
       <img src={song.cover} alt={`${song.name}`} />
-      <div className="song-description">
+      <div className='song-description'>
         <h3>{song.name}</h3>
         <h4>{song.artist}</h4>
       </div>
