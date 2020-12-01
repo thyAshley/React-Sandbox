@@ -38,6 +38,14 @@ const appStateReducer = (state: AppState, action: Action): AppState => {
     case "ADD_LIST": {
       return {
         ...state,
+        lists: [
+          ...state.lists,
+          {
+            id: nanoid(),
+            text: action.payload,
+            tasks: [],
+          },
+        ],
       };
     }
     case "ADD_TASK": {

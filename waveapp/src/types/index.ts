@@ -17,6 +17,7 @@ export interface ISongProps {
 export interface ILibraryProps {
   songs: ISong[];
   setCurrentSong: (song: ISong) => void;
+  setIsPlaying: (isPlaying: boolean) => void;
   audioRef: MutableRefObject<HTMLAudioElement | null>;
   isPlaying: boolean;
   showLibrary: boolean;
@@ -26,7 +27,7 @@ export interface ILibrarySongProps {
   song: ISong;
   audioRef: MutableRefObject<HTMLAudioElement | null>;
   setCurrentSong: (song: ISong) => void;
-  isPlaying: boolean;
+  setIsPlaying: (isPlaying: boolean) => void;
 }
 
 export interface IPlayerProps {

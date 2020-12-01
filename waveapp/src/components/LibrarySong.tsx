@@ -2,10 +2,11 @@ import React from "react";
 
 import { ILibrarySongProps } from "../types";
 
-const LibrarySong = ({ song, setCurrentSong, audioRef, isPlaying }: ILibrarySongProps) => {
+const LibrarySong = ({ song, setCurrentSong, audioRef, setIsPlaying }: ILibrarySongProps) => {
   const songSelectHandler = async () => {
     await setCurrentSong(song);
-    if (isPlaying) audioRef.current?.play()
+    audioRef.current?.play()
+    setIsPlaying(true);
   }
 
   return (

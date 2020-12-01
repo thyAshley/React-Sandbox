@@ -45,16 +45,6 @@
   width: 5px;
 }
 
-*::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-*::-webkit-scrollbar-thumb {
-  background-color: rgba(155, 155, 155, 0.5) transparent;
-  border: transparent;
-  border-radius: 20px;
-}
-
 .active-library {
   transform: translateX(0%);
   opacity: 1;
@@ -62,4 +52,10 @@
 
 .active {
   background: lightblue;
+}
+
+@media screen and (max-width: 768px) {
+  .library {
+    width: 100%;
+  }
 }
