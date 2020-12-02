@@ -6,6 +6,7 @@ import AboutUs from "./screens/AboutUs";
 import Nav from "./components/Nav";
 import OurWork from "./screens/OurWork";
 import ContactUs from "./screens/ContactUs";
+import MovieDetail from "./screens/MovieDetail";
 
 function App() {
   return (
@@ -14,8 +15,9 @@ function App() {
         <Nav />
         <GlobalStyle />
         <Switch>
-          <Route path="/work" component={OurWork} />
-          <Route path="/contact" component={ContactUs} />
+          <Route path="/work" exact component={OurWork} />
+          <Route path="/work/:id" component={MovieDetail} />
+          <Route path="/contact" exact component={ContactUs} />
           <Route path="/" component={AboutUs} />
         </Switch>
       </div>
