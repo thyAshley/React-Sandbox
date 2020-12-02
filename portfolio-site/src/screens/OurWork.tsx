@@ -19,14 +19,14 @@ const OurWork = () => {
       <Movie>
         <h2>The Racer</h2>
         <div className="line"></div>
-        <Link to="/work/good-times">
+        <Link to="/work/the-racer">
           <img src={theracer} alt="theracer" />
         </Link>
       </Movie>
       <Movie>
-        <h2>The Racer</h2>
+        <h2>Good times</h2>
         <div className="line"></div>
-        <Link to="/work/the-racer">
+        <Link to="/work/good-times">
           <img src={goodtimes} alt="goodtimes" />
         </Link>
       </Movie>
