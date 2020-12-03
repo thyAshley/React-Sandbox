@@ -6,11 +6,16 @@ import { motion } from "framer-motion";
 import athlete from "../img/athlete-small.png";
 import theracer from "../img/theracer-small.png";
 import goodtimes from "../img/goodtimes-small.png";
-import { pageAnimation } from "../styles/animation";
+import { pageAnimationWhite } from "../styles/animation";
 
 const OurWork = () => {
   return (
-    <Work variants={pageAnimation} initial="hidden" animate="show" exit="exit">
+    <Work
+      variants={pageAnimationWhite}
+      initial="hidden"
+      animate="show"
+      exit="exit"
+    >
       <Movie>
         <h2>The Athelete</h2>
         <div className="line"></div>
