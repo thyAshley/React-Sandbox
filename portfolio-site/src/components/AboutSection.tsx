@@ -2,8 +2,9 @@ import React from "react";
 import { motion } from "framer-motion";
 
 import { About, Description, Hide, ImageContainer } from "../styles/styles";
-import home1 from "../img/home1.png";
 import { titleAnimation, fade, photoAnimation } from "../styles/animation";
+import home1 from "../img/home1.png";
+import Wave from "./Wave";
 
 const AboutSection = () => {
   return (
@@ -32,6 +33,7 @@ const AboutSection = () => {
       <ImageContainer>
         <motion.img variants={photoAnimation} src={home1} alt="home" />
       </ImageContainer>
+      <Wave />
     </About>
   );
 };
