@@ -2,6 +2,8 @@ import React from "react";
 import { About, Description, ImageContainer } from "../styles/styles";
 import styled from "styled-components";
 
+import useScroll from "../hooks/useScroll";
+import { fade } from "../styles/animation";
 import clock from "../img/clock.svg";
 import diaphragm from "../img/diaphragm.svg";
 import money from "../img/money.svg";
@@ -9,8 +11,11 @@ import teamwork from "../img/teamwork.svg";
 import home2 from "../img/home2.png";
 
 const ServicesSection = () => {
+  // const controls = useAnimation();
+  // const [element, view] = useInView({ threshold: 0.2 });
+  const [element, controls] = useScroll();
   return (
-    <Services>
+    <Services variants={fade} animate={controls} initial="hidden" ref={element}>
       <Description>
         <h2>
           High <span>quality</span> services
