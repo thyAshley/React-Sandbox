@@ -8,6 +8,7 @@ import Nav from "./components/Nav";
 import OurWork from "./screens/OurWork";
 import ContactUs from "./screens/ContactUs";
 import MovieDetail from "./screens/MovieDetail";
+import ScrollTop from "./Utils/ScrollTop";
 
 function App() {
   const location = useLocation();
@@ -23,6 +24,7 @@ function App() {
           <Route path="/" component={AboutUs} />
         </Switch>
       </AnimatePresence>
+      <ScrollTop />
     </div>
   );
 }

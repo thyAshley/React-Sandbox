@@ -3,7 +3,7 @@ import { About, Description, ImageContainer } from "../styles/styles";
 import styled from "styled-components";
 
 import useScroll from "../hooks/useScroll";
-import { fade } from "../styles/animation";
+import { scrollReveal } from "../styles/animation";
 import clock from "../img/clock.svg";
 import diaphragm from "../img/diaphragm.svg";
 import money from "../img/money.svg";
@@ -15,7 +15,12 @@ const ServicesSection = () => {
   // const [element, view] = useInView({ threshold: 0.2 });
   const [element, controls] = useScroll();
   return (
-    <Services variants={fade} animate={controls} initial="hidden" ref={element}>
+    <Services
+      variants={scrollReveal}
+      animate={controls}
+      initial="hidden"
+      ref={element}
+    >
       <Description>
         <h2>
           High <span>quality</span> services
@@ -67,11 +72,19 @@ const Services = styled(About)`
     padding: 2rem 0rem 4rem 0rem;
     width: 70%;
   }
+  @media (max-width: 1300px) {
+    display: block;
+    padding: 2rem;
+    text-align: center;
+  }
 `;
 
 const Cards = styled.div`
   display: flex;
   flex-wrap: wrap;
+  @media (max-width: 1300px) {
+    justify-content: center;
+  }
 `;
 
 const Card = styled.div`
