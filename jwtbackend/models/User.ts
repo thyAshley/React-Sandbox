@@ -3,7 +3,6 @@ import validator from 'validator';
 import bcrypt from 'bcrypt';
 
 export interface UserAttribute extends Document {
-  id?: string;
   email: string;
   password: string;
 }

@@ -1,12 +1,15 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import * as dotenv from 'dotenv';
-import AuthRouter from './routes/authRoutes';
+import cookieParser from 'cookie-parser';
 dotenv.config();
+
+import AuthRouter from './routes/authRoutes';
 
 const app = express();
 
 app.use(express.json());
+app.use(cookieParser());
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
@@ -29,4 +32,13 @@ mongoose
   });
 
 app.use('/', AuthRouter);
+app.use('/', (req, res) => res.render('home'));
 app.get('/smoothies', (req, res) => res.render('smoothies'));
+app.get('/set-cookies', (req, res) => {
+  res.setHeader('Set-Cookie', 'newUser=true');
+  res.send('added cookie');
+});
+
+app.get('/read-cookies', (req, res) => {
+  console.log(req.cookies);
+});
