@@ -1,10 +1,12 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import * as dotenv from 'dotenv';
+import AuthRouter from './routes/authRoutes';
 dotenv.config();
 
 const app = express();
 
+app.use(express.json());
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
@@ -26,5 +28,5 @@ mongoose
     console.log('failed to connect to mongodb');
   });
 
-app.get('/', (req, res) => res.render('home'));
+app.use('/', AuthRouter);
 app.get('/smoothies', (req, res) => res.render('smoothies'));
