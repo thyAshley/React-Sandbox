@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import Planet from './Planet';
 
@@ -12,14 +12,14 @@ interface PlanetAttribute {
   terrain: string;
 }
 
-const fetchPlanets = async () => {
-  const response = await fetch('http://swapi.dev/api/planets/');
+const fetchPlanets = async (page: number) => {
+  const response = await fetch(`http://swapi.dev/api/planets/?page=${page}`);
   return response.json();
 };
 
 const Planets = () => {
-  const { data, status } = useQuery('planets', fetchPlanets);
-
+  const { data, status } = useQuery('planets', () => fetchPlanets(page));
+  const [page, setPage] = useState(1);
   console.log(data);
   return (
     <div>
