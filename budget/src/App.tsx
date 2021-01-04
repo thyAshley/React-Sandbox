@@ -10,13 +10,7 @@ import ExpenseScreen from "./screens/ExpensesScreen";
 import HomeScreen from "./screens/HomeScreen";
 import PageNotFound from "./screens/PageNotFound";
 
-store.subscribe(() => {
-  console.log(store.getState());
-});
-
-store.dispatch(decrement(5));
-store.dispatch(increment(10));
-store.dispatch(increment(5));
+console.log(store.getState());
 
 const App = () => {
   return (

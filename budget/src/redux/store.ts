@@ -1,27 +1,13 @@
-import { createStore } from "redux";
+import { createStore, combineReducers } from "redux";
+import { filterReducer, expenseReducer } from "./budget/budgetReducer";
 
-const store = createStore(
-  (
-    state: { counter: number } = { counter: 0 },
-    action: { type: any; payload?: number }
-  ) => {
-    switch (action.type) {
-      case "INCREMENT":
-        return {
-          counter: state.counter + action.payload!,
-        };
-      case "RESET":
-        return {
-          counter: 0,
-        };
-      case "DECREMENT":
-        return {
-          counter: state.counter - action.payload!,
-        };
-      default:
-        return state;
-    }
-  }
-);
+const rootReducer = combineReducers({
+  expenses: expenseReducer,
+  filter: filterReducer,
+});
+
+const store = createStore(rootReducer);
 
 export default store;
+
+export type RootState = ReturnType<typeof rootReducer>;

@@ -1,13 +1,15 @@
-export const increment = (inc: number = 1) => {
+import * as actions from "./counterConstant";
+
+export const increment = (): actions.increment => {
   return {
-    type: "INCREMENT",
-    payload: inc,
+    type: actions.INCREMENT,
+    payload: 1,
   };
 };
 
-export const decrement = (dec: number = 1) => {
+export const decrement = (): actions.decrement => {
   return {
-    type: "DECREMENT",
-    payload: dec,
+    type: actions.DECREMENT,
+    payload: 1,
   };
 };
