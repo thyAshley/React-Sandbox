@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FormEvent } from "react";
-
+import { Link } from "react-router-dom";
 import "./Login.scss";
 
 const Login = () => {
@@ -70,7 +70,9 @@ const Login = () => {
 
       <hr className="border-green-100" />
       {/* Forgot password link */}
-      <p className="m-2 text-green-500">Forgot Password?</p>
+      <Link to="/forgot">
+        <p className="m-2 text-green-500">Forgot Password?</p>
+      </Link>
     </div>
   );
 };
