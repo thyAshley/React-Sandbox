@@ -34,45 +34,47 @@ const Login = () => {
   };
 
   return (
-    <div className="w-3/4 h-auto p-5 m-5 bg-white login md:w-1/2 lg:w-1/3 rounded-3xl">
-      <h1 className="text-4xl font-bold text-center text-green-400">Login</h1>
-      {/* Form element */}
-      <form className="form" onSubmit={onSubmitHandler}>
-        <div>
-          <div className="relative">
-            <label htmlFor="email">Email Address</label>
-            <input
-              placeholder="Email"
-              type="email"
-              id="email"
-              value={email}
-              onChange={({ target }) => setEmail(target.value)}
-            />
-            {error?.email && <small>{error.email}</small>}
+    <div className="flex items-center justify-center w-full h-screen bg-green-300">
+      <div className="w-3/4 h-auto p-5 m-5 bg-white login md:w-1/2 lg:w-1/3 rounded-3xl">
+        <h1 className="text-4xl font-bold text-center text-green-400">Login</h1>
+        {/* Form element */}
+        <form className="form" onSubmit={onSubmitHandler}>
+          <div>
+            <div className="relative">
+              <label htmlFor="email">Email Address</label>
+              <input
+                placeholder="Email"
+                type="email"
+                id="email"
+                value={email}
+                onChange={({ target }) => setEmail(target.value)}
+              />
+              {error?.email && <small>{error.email}</small>}
+            </div>
+
+            <div className="relative">
+              <label htmlFor="password">Password</label>
+              <input
+                placeholder="Password"
+                type="password"
+                id="password"
+                value={password}
+                onChange={({ target }) => setPassword(target.value)}
+                className={error?.password ? "border-red-600" : ""}
+              />
+              {error?.password && <small>{error.password}</small>}
+            </div>
+
+            <input type="submit" value="Login" />
           </div>
+        </form>
 
-          <div className="relative">
-            <label htmlFor="password">Password</label>
-            <input
-              placeholder="Password"
-              type="password"
-              id="password"
-              value={password}
-              onChange={({ target }) => setPassword(target.value)}
-              className={error?.password ? "border-red-600" : ""}
-            />
-            {error?.password && <small>{error.password}</small>}
-          </div>
-
-          <input type="submit" value="Login" />
-        </div>
-      </form>
-
-      <hr className="border-green-100" />
-      {/* Forgot password link */}
-      <Link to="/forgot">
-        <p className="m-2 text-green-500">Forgot Password?</p>
-      </Link>
+        <hr className="border-green-100" />
+        {/* Forgot password link */}
+        <Link to="/forgot">
+          <p className="m-2 text-green-500">Forgot Password?</p>
+        </Link>
+      </div>
     </div>
   );
 };

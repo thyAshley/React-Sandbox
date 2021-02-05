@@ -2,16 +2,18 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
+import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 
 function App() {
   return (
-    <div className="flex items-center justify-center w-full h-screen bg-green-300">
+    <>
       <Switch>
         <Route path="/forgot" component={ForgotPassword} />
-        <Route path="/" exact component={Login} />
+        <Route path="/login" component={Login} />
+        <Route path="/" exact component={Home} />
       </Switch>
-    </div>
+    </>
   );
 }
 
