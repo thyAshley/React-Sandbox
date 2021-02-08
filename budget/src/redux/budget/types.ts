@@ -8,6 +8,12 @@ interface ExpensesAttribute {
   createdAt: number;
 }
 
+export interface ExpensesInputAttribute {
+  description: string;
+  note: string;
+  amount: string;
+}
+
 interface FilterAttribute {
   keyword?: string;
   sortby?: string;
@@ -20,9 +26,31 @@ export interface BudgetAttribute {
   filters: FilterAttribute;
 }
 
-interface add {
-  type: typeof constant.ADD;
-  payload: number;
+export interface Add_Expense {
+  type: typeof constant.ADD_EXPENSE;
+  payload: ExpensesAttribute;
+}
+export interface Remove_Expenses {
+  type: typeof constant.REMOVE_EXPENSE;
+  payload: string;
+}
+export interface Update_Expenses {
+  type: typeof constant.UPDATE_EXPENSE;
+  payload: {
+    id: string;
+    product: ExpensesInputAttribute;
+  };
 }
 
-export type budgetActions = add;
+export interface Filter_Expense {
+  type: typeof constant.FILTER_EXPENSE;
+  payload: {
+    keyword: string;
+  };
+}
+
+export type budgetActions =
+  | Add_Expense
+  | Remove_Expenses
+  | Update_Expenses
+  | Filter_Expense;

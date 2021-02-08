@@ -30,11 +30,17 @@ const People = () => {
       {status === 'loading' && <div>Loading data...</div>}
       {status === 'success' && (
         <div>
-          <button onClick={() => setPage((old) => Math.max(old - 1, 1))}>
+          <button
+            onClick={() => setPage((old) => Math.max(old - 1, 1))}
+            disabled={!data.previous}
+          >
             Previous page
           </button>
           <span>{page}</span>
-          <button onClick={() => setPage((old) => (data.next ? old + 1 : old))}>
+          <button
+            onClick={() => setPage((old) => (data.next ? old + 1 : old))}
+            disabled={!data.next}
+          >
             Next page
           </button>
           {data.results.map((person: personAttribute, idx: string) => (
